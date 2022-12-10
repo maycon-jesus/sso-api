@@ -7,11 +7,13 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class User {
+export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    unique: true,
+  })
   email: string;
 
   @Column({
@@ -27,10 +29,15 @@ export class User {
   @Column()
   password: string;
 
+  // @Column({
+  //   name: 'avatar_url',
+  // })
+  // avatarUrl: string;
+
   @Column({
-    name: 'avatar_url',
+    name: 'gravatar_hash',
   })
-  avatarUrl: string;
+  gravatarHash: string;
 
   @CreateDateColumn({
     name: 'created_at',

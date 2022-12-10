@@ -1,30 +1,44 @@
+import { UserDto } from 'src/users/dto/userDto';
 import { CreateUserDto } from './dto/createUserDto';
-import { User } from './entities/user.entity';
+import { UserEntity } from './entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { hashSync } from 'bcrypt';
+import * as hashMD5 from 'crypto-js/md5';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private usersRepository: Repository<User>,
+    @InjectRepository(UserEntity)
+    private usersRepository: Repository<UserEntity>,
   ) {}
 
-  getById(id: number) {
-    return this.usersRepository.findOne({
+  async getById(id: number) {
+    const user = await this.usersRepository.findOne({
       where: {
         id,
       },
     });
+    return new UserDto(user);
   }
 
-  async create(data: CreateUserDto) {
+  async create(data: CreateUserDto): Promise<UserEntity> {
     data.password = hashSync(data.password, 12);
+    const gravatarHash = hashMD5(data.email).toString();
+
     const r = await this.usersRepository.insert({
       ...data,
+      gravatarHash,
     });
-    console.log(r);
-    return r;
+    const userId = r.identifiers[0].id;
+
+    const user = await this.usersRepository.findOne({
+      where: {
+        id: userId,
+      },
+    });
+
+    return new UserDto(user);
   }
 }

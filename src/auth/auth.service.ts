@@ -6,7 +6,8 @@ import { UsersService } from 'src/users/users.service';
 export class AuthService {
   constructor(private usersService: UsersService) {}
 
-  register(data: CreateUserDto) {
-    return this.usersService.create(data);
+  async register(data: CreateUserDto) {
+    const userData = await this.usersService.create(data);
+    return userData;
   }
 }
