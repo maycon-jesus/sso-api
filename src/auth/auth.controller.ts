@@ -40,7 +40,8 @@ export class AuthController {
       ],
     },
   })
-  @Put('/register')
+  @HttpCode(200)
+  @Post('/register')
   async createAccount(@Body() data: CreateUserDto) {
     const userData = await this.authService.register(data);
     return userData;
