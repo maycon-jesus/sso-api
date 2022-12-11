@@ -23,6 +23,15 @@ export class UsersService {
     return new UserDto(user);
   }
 
+  async getByEmail(email: string) {
+    const user = await this.usersRepository.findOne({
+      where: {
+        email,
+      },
+    });
+    return user;
+  }
+
   async create(data: CreateUserDto): Promise<UserEntity> {
     data.password = hashSync(data.password, 12);
     const gravatarHash = hashMD5(data.email).toString();
