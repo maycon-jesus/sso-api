@@ -1,8 +1,12 @@
-import { Controller } from '@nestjs/common';
-import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Req } from '@nestjs/common';
+import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Request } from 'express';
 import { UserDto } from './dto/userDto';
 
 @ApiTags('Users')
 @ApiExtraModels(UserDto)
-@Controller()
+@ApiResponse({
+  status: 401,
+})
+@Controller('/users')
 export class UsersController {}

@@ -2,7 +2,7 @@ import { UserEntity } from './../entities/user.entity';
 import { ApiResponseProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 
-export class UserDto {
+export class UserDto implements UserEntity {
   @ApiResponseProperty()
   id: number;
 

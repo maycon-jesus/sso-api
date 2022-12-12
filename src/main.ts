@@ -3,12 +3,21 @@ import { AppModule } from './app.module';
 import * as compression from 'compression';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import * as session from 'express-session';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(compression());
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
+
+  app.use(
+    session({
+      secret: process.env.SESSION_STORE_SECRET,
+      resave: false,
+      saveUninitialized: false,
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('SSO Maycon Jesus')
@@ -22,6 +31,6 @@ async function bootstrap() {
     customSiteTitle: 'API SSO - Maycon Jesus',
   });
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();

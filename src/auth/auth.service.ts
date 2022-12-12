@@ -47,4 +47,16 @@ export class AuthService {
       token,
     };
   }
+
+  async getJwtTokenPayload(jwtToken: string) {
+    try {
+      const payload = <jwt.UserIDJwtPayload>(
+        jwt.verify(jwtToken, process.env.JWT_SECRET)
+      );
+      return payload;
+    } catch (err) {
+      console.error(jwtToken, err);
+      throw new UnauthorizedException('JWT Token invalid');
+    }
+  }
 }

@@ -29,7 +29,7 @@ export class UsersService {
         email,
       },
     });
-    return user;
+    return new UserDto(user);
   }
 
   async create(data: CreateUserDto): Promise<UserEntity> {
