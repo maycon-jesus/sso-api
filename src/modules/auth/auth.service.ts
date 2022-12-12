@@ -1,6 +1,6 @@
-import { CreateUserDto } from './../users/dto/createUserDto';
+import { CreateUserDto } from '../modules/users/dto/createUserDto';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from 'src/modules/users/users.service';
 import { LoginDataDto } from './dto/loginDataDto';
 import { compareSync } from 'bcrypt';
 import * as jwt from 'jsonwebtoken';

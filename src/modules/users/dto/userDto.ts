@@ -1,4 +1,4 @@
-import { UserEntity } from './../entities/user.entity';
+import { UserEntity } from '../entities/user.entity';
 import { ApiResponseProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 

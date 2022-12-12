@@ -5,7 +5,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { UsersService } from 'src/users/users.service';
+import { UsersService } from 'src/modules/users/users.service';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {

@@ -1,4 +1,4 @@
-import { CreateUserDto } from './../users/dto/createUserDto';
+import { CreateUserDto } from '../modules/users/dto/createUserDto';
 import { AuthService } from './auth.service';
 import {
   Body,
@@ -16,7 +16,7 @@ import {
   ApiTags,
   getSchemaPath,
 } from '@nestjs/swagger';
-import { UserDto } from 'src/users/dto/userDto';
+import { UserDto } from 'src/modules/users/dto/userDto';
 import { LoginDataDto } from './dto/loginDataDto';
 import { LoginResponseDto } from './dto/loginResponseDto';
 
