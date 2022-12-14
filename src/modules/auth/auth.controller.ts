@@ -1,4 +1,4 @@
-import { CreateUserDto } from '../modules/users/dto/createUserDto';
+import { CreateUserDto } from '../users/dto/createUserDto';
 import { AuthService } from './auth.service';
 import {
   Body,
