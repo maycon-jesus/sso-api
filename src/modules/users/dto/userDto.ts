@@ -1,3 +1,4 @@
+import { ApplicationEntity } from './../../applications/entities/application.entity';
 import { UserEntity } from '../entities/user.entity';
 import { ApiResponseProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
@@ -23,6 +24,9 @@ export class UserDto implements UserEntity {
 
   @ApiResponseProperty()
   updatedAt: Date;
+
+  @Exclude()
+  applications: ApplicationEntity[];
 
   @Exclude()
   password: string;

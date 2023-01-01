@@ -1,7 +1,9 @@
+import { ApplicationEntity } from './../../applications/entities/application.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -48,4 +50,7 @@ export class UserEntity {
     name: 'updated_at',
   })
   updatedAt: Date;
+
+  @OneToMany(() => ApplicationEntity, (app) => app.owner)
+  applications: ApplicationEntity[];
 }
