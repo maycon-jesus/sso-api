@@ -19,6 +19,9 @@ export class UsersService {
       where: {
         id,
       },
+      relations: {
+        applications: true,
+      },
     });
     return new UserDto(user);
   }
